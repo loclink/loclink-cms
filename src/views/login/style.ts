@@ -9,20 +9,45 @@ const LoginWrapper = styled.div`
 `;
 
 const LoginTabsWrapper = styled.div`
+  @media screen and (min-width: 1200px) {
+    top: 45%;
+  }
+  @media screen and (max-width: 1200px) {
+    top: 40%;
+  }
+
   position: absolute;
   width: 100%;
-  top: 45%;
   transform: translateY(-50%);
   .login-tabs {
     @media screen and (min-width: 1200px) {
-      width: 40%;
+      width: 50%;
     }
     @media screen and (max-width: 1200px) {
-      width: 70%;
+      width: 80%;
     }
+
     height: 300px;
     margin: 0 auto;
   }
 `;
 
-export { LoginWrapper, LoginTabsWrapper };
+const TabPaneWrapper = styled.div`
+  /*大屏 （pc）*/
+  @media screen and (min-width: 1200px) {
+    width: 45%;
+  }
+
+  /*中等屏幕 （旧式显示器）*/
+  @media screen and (min-width: 769px) and (max-width: 1200px) {
+    width: 40%;
+  }
+
+  /*超小屏幕 （手机） 小于等于768*/
+  @media screen and (max-width: 768px) {
+    width: 70%;
+  }
+  margin: 0 auto;
+`;
+
+export { LoginWrapper, LoginTabsWrapper, TabPaneWrapper };
