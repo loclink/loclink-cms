@@ -2,13 +2,15 @@ import React, { memo } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
 
-const SignIn = memo(() => {
-  const onFinish = (values: any) => {
-    console.log('Success:', values);
-  };
+import { useAppDispath } from '../../../store';
+import {  userSignInAction } from '../../../store/user';
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
+const SignIn = memo(() => {
+  const dispatch = useAppDispath();
+  const onFinish = (values: any) => {
+    dispatch(userSignInAction(values)).then(res => {
+      console.log(res)
+    });
   };
 
   return (
@@ -36,7 +38,7 @@ const SignIn = memo(() => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" className="login-button" style={{ width: '100%' }}>
+          <Button type="primary" className="login-button" style={{ width: '100%' }} htmlType="submit">
             登录
           </Button>
         </Form.Item>

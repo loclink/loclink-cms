@@ -1,8 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { loginReducer } from '../views/login/store';
+import { useDispatch } from 'react-redux';
+import userReducer from './user';
 
-export default configureStore({
+const store = configureStore({
   reducer: {
-    login:loginReducer
+    user: userReducer,
   }
 });
+
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispath: () => AppDispatch = useDispatch;
+export default store;

@@ -9,6 +9,7 @@ const LoginWrapper = styled.div`
 `;
 
 const LoginTabsWrapper = styled.div`
+
   @media screen and (min-width: 1200px) {
     top: 45%;
   }
