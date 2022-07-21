@@ -3,13 +3,16 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
 
 import { useAppDispath } from '../../../store';
-import {  userSignInAction } from '../../../store/user';
+import { userSignInAction } from '../../../store/user';
+import { useNavigate } from 'react-router-dom';
 
 const SignInForm = memo(() => {
   const dispatch = useAppDispath();
+  const navigate = useNavigate();
   const onFinish = (values: any) => {
-    dispatch(userSignInAction(values)).then(res => {
-      console.log(res)
+    dispatch(userSignInAction(values)).then((res: any) => {
+      console.log(res.payload)
+      if(res.payload.code === 200) navigate({pathname: '/main'})
     });
   };
 

@@ -1,13 +1,13 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, RouteObject } from 'react-router-dom';
 
 const Login = React.lazy(() => import('@/views/login'));
 const Main = React.lazy(() => import('@/views/main'));
 
-const routes = [
+const routes:RouteObject[] = [
   {
     path: '/*',
-    element: <Navigate to={'/main'} />
+    element: <Navigate to={'/main'} replace={true}/>
   },
   {
     path: '/main',

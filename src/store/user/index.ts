@@ -16,7 +16,6 @@ const userSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(userSignInAction.fulfilled, (state, action) => {
-      console.log(action.payload.code);
       if (action.payload.code === 200) state.authToken = action.payload.data.token;
     });
   }

@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { BASE_URL, TIME_OUT } from './config';
 import { message } from 'antd';
-import { isLoading } from '../store/user';
 import store from '@/store';
+import { isLoading } from '@/store/user';
+import { BASE_URL, TIME_OUT } from './config';
+
 const instance = axios.create({
   baseURL: BASE_URL,
   timeout: TIME_OUT
@@ -10,7 +11,8 @@ const instance = axios.create({
 
 // 请求拦截
 instance.interceptors.request.use(
-  (config) => {
+  (config: any) => {
+    config.headers.authorization = 'Bearer ' + store.getState().user.authToken;
     store.dispatch(isLoading(true));
     return config;
   },

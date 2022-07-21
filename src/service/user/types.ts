@@ -3,4 +3,10 @@ interface IAccountInfo {
   password: string;
 }
 
-export type { IAccountInfo };
+interface IResponseData {
+  data: any;
+  code: number;
+  message: string;
+}
+
+export type { IAccountInfo, IResponseData };

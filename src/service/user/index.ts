@@ -1,6 +1,6 @@
 import instance from '../request';
-import { IAccountInfo } from './types';
-const userSignIn = async (accountInfo: IAccountInfo): Promise<{data: any, code: number, message: string} > => {
+import { IAccountInfo, IResponseData } from './types';
+const userSignIn = async (accountInfo: IAccountInfo): Promise<IResponseData> => {
   return instance.request({
     url: '/auth',
     method: 'post',
@@ -8,4 +8,11 @@ const userSignIn = async (accountInfo: IAccountInfo): Promise<{data: any, code: 
   });
 };
 
-export { userSignIn };
+const getUserInfo = async (): Promise<IResponseData> => {
+  return instance.request({
+    url: '/info',
+    method: 'get'
+  });
+};
+
+export { userSignIn, getUserInfo };
