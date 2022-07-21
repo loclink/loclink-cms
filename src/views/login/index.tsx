@@ -1,32 +1,25 @@
 import React, { memo } from 'react';
 import { Tabs } from 'antd';
-import { tabConfig } from './config/login-config';
 import { LoginTabsWrapper, LoginWrapper, TabPaneWrapper } from './style';
-import SignIn from './cpns/sign-in';
-import SignOn from './cpns/sign-on';
+import SignInForm from './cpns/sign-in-form';
+import SignOnForm from './cpns/sign-on-form';
 
-const { TabPane } = Tabs;
 
 const Login = memo(() => {
-  const tabContent = (type: string) => {
-    if (type === 'signIn') {
-      return <SignIn />;
-    } else {
-      return <SignOn />;
-    }
-  };
-
   return (
     <LoginWrapper>
       <LoginTabsWrapper>
         <Tabs className="login-tabs" centered>
-          {tabConfig.map((item, index) => {
-            return (
-              <TabPane tab={item.label} key={index}>
-                <TabPaneWrapper>{tabContent(item.type)}</TabPaneWrapper>
-              </TabPane>
-            );
-          })}
+          <Tabs.TabPane tab="登录" key={1}>
+            <TabPaneWrapper>
+              <SignInForm />
+            </TabPaneWrapper>
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="注册" key={2}>
+            <TabPaneWrapper>
+              <SignOnForm />
+            </TabPaneWrapper>
+          </Tabs.TabPane>
         </Tabs>
       </LoginTabsWrapper>
     </LoginWrapper>

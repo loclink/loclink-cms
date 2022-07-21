@@ -5,7 +5,7 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import { useAppDispath } from '../../../store';
 import {  userSignInAction } from '../../../store/user';
 
-const SignIn = memo(() => {
+const SignInForm = memo(() => {
   const dispatch = useAppDispath();
   const onFinish = (values: any) => {
     dispatch(userSignInAction(values)).then(res => {
@@ -47,6 +47,6 @@ const SignIn = memo(() => {
   );
 });
 
-SignIn.displayName = 'SignIn';
+SignInForm.displayName = 'SignInForm';
 
-export default SignIn;
+export default SignInForm;

@@ -15,6 +15,7 @@ instance.interceptors.request.use(
     return config;
   },
   (err) => {
+    message.error(err.message);
     console.log(err);
   }
 );
@@ -28,12 +29,13 @@ instance.interceptors.response.use(
       message.error(res.data.message);
     }
     store.dispatch(isLoading(false));
+
     return res.data;
   },
   (err) => {
     store.dispatch(isLoading(false));
     console.log(err);
-    message.error(err);
+    message.error(err.message);
   }
 );
 
