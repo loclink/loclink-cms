@@ -39,8 +39,41 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## Git换行符设置
+windows开发环境把autocrlf设置为input，通过下面的命令设置
+
+``` shell
+git config --global core.eol lf
+git config --global core.autocrlf input
+git config --global core.safecrlf true
+```
+
+配置详解
+
+1. `core.autocrlf`：换行符自动转换策略，控制checkout和commit的行为
+
+   - true：checkout时将文件中的LF转换为CRLF，commit时将CRLF转换为LF
+
+   - input：checkout时不转换，commit时将CRLF转换为LF
+
+   - false：checkout和commit均不转换
+
+2. `core.safecrlf`：提交时如果文件包含混合换行符，则
+
+   - true：禁止提交
+
+   - warn：发出警告
+
+   - false：忽略
+
+3. `.gitattributes`配置含义，规定哪些后缀的文件需要在commit时进行强制转换
+
+   - text eol=lf：入库时将行尾规范为LF，检出时行尾不强制转换为 CRLF

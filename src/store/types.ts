@@ -3,6 +3,8 @@ interface IRootState {
     authToken: '';
     userInfo: object;
     loading: false;
+    menuList: [];
   };
 }
+
 export type { IRootState };

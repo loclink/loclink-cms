@@ -11,7 +11,7 @@ const routes:RouteObject[] = [
   },
   {
     path: '/main',
-    element: <Main />
+    element: <Main />,
   },
   {
     path: '/login',

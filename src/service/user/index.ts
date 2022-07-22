@@ -1,18 +1,30 @@
-import instance from '../request';
-import { IAccountInfo, IResponseData } from './types';
+import { request } from '../index';
+import { IAccountInfo, IResponseData } from '../types';
+
 const userSignIn = async (accountInfo: IAccountInfo): Promise<IResponseData> => {
-  return instance.request({
+  return request.request({
     url: '/auth',
     method: 'post',
-    data: accountInfo
+    data: accountInfo,
+    loading: true,
+    message: true
   });
 };
 
 const getUserInfo = async (): Promise<IResponseData> => {
-  return instance.request({
-    url: '/info',
-    method: 'get'
+  return request.request({
+    url: '/user/info',
+    method: 'post',
+    loading: true
   });
 };
 
-export { userSignIn, getUserInfo };
+const getMenuList = async (): Promise<IResponseData> => {
+  return request.request({
+    url: '/user/menu',
+    method: 'get',
+    loading: true
+  });
+};
+
+export { userSignIn, getUserInfo, getMenuList };
