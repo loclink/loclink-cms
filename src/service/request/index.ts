@@ -1,4 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
+import { useNavigate } from 'react-router-dom';
+import store from '../../store';
+import { setAuthStatus } from '../../store/user';
 import { RequestConfig, RequestInterceptors } from './types';
 
 const DEFAULT_LOADING = false;
@@ -55,6 +58,7 @@ class Request {
       (res) => {
         this.loading && this.hideLoading && this.hideLoading();
         this.message && this.showMessage && this.showMessage(res.data.message);
+        if (res.data.code === 10401) window.location.pathname = '/login';
         return res.data;
       },
       (err) => {

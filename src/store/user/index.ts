@@ -8,7 +8,8 @@ const userSlice = createSlice({
     authToken: '',
     userInfo: {},
     loading: false,
-    menuList: []
+    menuList: [],
+    authStatus: false
   },
 
   reducers: {
@@ -20,6 +21,11 @@ const userSlice = createSlice({
     // 设置token
     setAuthToken: (state, action) => {
       state.authToken = action.payload;
+    },
+
+    // switch auth status
+    setAuthStatus: (state, action) => {
+      state.authStatus = action.payload;
     }
   },
 
@@ -45,5 +51,5 @@ const userSlice = createSlice({
 });
 
 export { userSignInAction, getUserInfoAction, getMenuListAction };
-export const { isLoading, setAuthToken } = userSlice.actions;
+export const { isLoading, setAuthToken, setAuthStatus } = userSlice.actions;
 export default userSlice.reducer;
