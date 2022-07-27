@@ -1,4 +1,4 @@
-import { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 interface RequestInterceptors {
   requestInterceptors?: (config: AxiosRequestConfig) => AxiosRequestConfig;
@@ -15,6 +15,7 @@ interface RequestConfig extends AxiosRequestConfig {
   hideLoading?: () => void;
   showMessage?: (message: string) => void;
   showErrorMessage?: (errMessage: string) => void;
+  authRequest?:(res:AxiosResponse) => void
 }
 
 export type { RequestConfig, RequestInterceptors };

@@ -1,9 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
+import { Layout, Menu } from 'antd';
 import { useSelector } from 'react-redux';
-import { useAppDispath } from '../../store';
-import { IRootState } from '../../store/types';
-import { getMenuListAction, getUserInfoAction } from '../../store/user';
-import {  Layout, Menu } from 'antd';
+import { Outlet } from 'react-router-dom';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -11,16 +9,18 @@ import {
   UserOutlined,
   VideoCameraOutlined
 } from '@ant-design/icons';
-import { Outlet } from 'react-router-dom';
+import { useAppDispath } from '../../store';
+import { IRootState } from '../../store/types';
+import { getMenuListAction, getUserInfoAction } from '../../store/user';
+import { useGetBasicData } from '../../hooks/useGetBasicData';
+
 const Main: React.FC = memo(() => {
   const dispatch = useAppDispath();
   const [collapsed, setCollapsed] = useState(false);
-  const { menuList, userInfo } = useSelector((state: IRootState) => state.user);
-
-  useEffect(() => {
-    Object.keys(userInfo).length || dispatch(getUserInfoAction());
-    menuList.length || dispatch(getMenuListAction());
-  }, [menuList]);
+  // useEffect(() => {
+  //   Object.keys(userInfo).length || dispatch(getUserInfoAction());
+  //   menuList.length || dispatch(getMenuListAction());
+  // }, [menuList]);
 
   return (
     <div className="main">

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Outlet } from 'react-router-dom';
 
-const Blog: React.FC = memo(() => {
+const Overview = memo(() => {
   return (
     <div>
       <Outlet />
@@ -9,5 +9,5 @@ const Blog: React.FC = memo(() => {
   );
 });
 
-Blog.displayName = 'Blog';
-export default Blog;
+Overview.displayName = 'Overview';
+export default Overview;

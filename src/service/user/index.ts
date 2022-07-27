@@ -15,7 +15,7 @@ const getUserInfo = async (): Promise<IResponseData> => {
   return request.request({
     url: '/user/info',
     method: 'post',
-    loading: true
+    loading: true,
   });
 };
 

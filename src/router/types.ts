@@ -1,3 +1,11 @@
-import { RouteObject } from 'react-router-dom';
-type MyRoutes = RouteObject & { name?: string };
-export type { MyRoutes };
+interface RouteObject {
+  caseSensitive?: boolean;
+  children?: RouteObject[];
+  element?: React.ReactNode;
+  index?: boolean;
+  path: string;
+  auth?: boolean;
+}
+
+
+export type { RouteObject };

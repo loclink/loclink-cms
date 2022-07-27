@@ -8,6 +8,15 @@ const request = new Request({
   baseURL: BASE_URL,
   timeout: TIME_OUT,
 
+  // 校验请求
+  authRequest(res) {
+    // 身份过期
+    if (res.data.code === 10401) {
+      window.location.pathname = '/login';
+      message.error(res.data.message);
+    }
+  },
+
   // 定义显示加载动画方法
   showLoading() {
     store.dispatch(isLoading(true));
@@ -45,7 +54,7 @@ const request = new Request({
     // 响应拦截
     responseInterceptors: (res) => {
       return res;
-    },
+    }
 
     // 响应失败拦截
     // responseInterceptorsCatch: (err) => {

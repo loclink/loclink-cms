@@ -6,6 +6,7 @@ import { IRootState } from '../../store/types';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
+// 全局加载动画组件
 const Loading = memo(() => {
   const hideTimer = useRef<any>();
   const showTimer = useRef<any>();

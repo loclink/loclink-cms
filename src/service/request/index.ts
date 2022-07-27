@@ -1,7 +1,4 @@
-import axios, { AxiosError, AxiosInstance } from 'axios';
-import { useNavigate } from 'react-router-dom';
-import store from '../../store';
-import { setAuthStatus } from '../../store/user';
+import axios, { Axios, AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { RequestConfig, RequestInterceptors } from './types';
 
 const DEFAULT_LOADING = false;
@@ -18,6 +15,7 @@ class Request {
   hideLoading?: () => void;
   showMessage?: (message: string) => void;
   showErrorMessage?: (errMessage: string) => void;
+  authRequest?: (res: AxiosResponse) => void;
 
   constructor(config: RequestConfig) {
     this.instance = axios.create(config);
@@ -28,7 +26,7 @@ class Request {
     this.hideLoading = config.hideLoading;
     this.showMessage = config.showMessage;
     this.showErrorMessage = config.showErrorMessage;
-
+    this.authRequest = config.authRequest
     // 定义单个实例的请求拦截器
     this.instance.interceptors.request.use(
       this.interceptors?.requestInterceptors,
@@ -55,10 +53,10 @@ class Request {
 
     // 单个请求的响应拦截器
     this.instance.interceptors.response.use(
-      (res) => {
+      (res: AxiosResponse) => {
         this.loading && this.hideLoading && this.hideLoading();
         this.message && this.showMessage && this.showMessage(res.data.message);
-        if (res.data.code === 10401) window.location.pathname = '/login';
+        this.authRequest && this.authRequest(res)
         return res.data;
       },
       (err) => {
