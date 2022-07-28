@@ -3,7 +3,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
 
 import { useAppDispath } from '../../../store';
-import { userSignInAction } from '../../../store/user';
+import { setLoginStatus, userSignInAction } from '../../../store/user';
 import { useNavigate } from 'react-router-dom';
 
 const SignInForm = memo(() => {
@@ -11,7 +11,10 @@ const SignInForm = memo(() => {
   const navigate = useNavigate();
   const onFinish = (values: any) => {
     dispatch(userSignInAction(values)).then((res: any) => {
-      if (res.payload.code === 200) navigate({ pathname: '/main' });
+      if (res.payload.code === 200) {
+        dispatch(setLoginStatus(true));
+        navigate({ pathname: '/main' });
+      }
     });
   };
 

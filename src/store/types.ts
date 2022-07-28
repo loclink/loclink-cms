@@ -4,6 +4,7 @@ interface IRootState {
     userInfo: object;
     loading: false;
     menuList: [];
+    loginStatus: boolean;
   };
 }
 

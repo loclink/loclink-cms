@@ -5,6 +5,7 @@ import { getMenuListAction, getUserInfoAction, userSignInAction } from './thunk'
 const userSlice = createSlice({
   name: 'user',
   initialState: {
+    loginStatus: true,
     authToken: '',
     userInfo: {},
     loading: false,
@@ -26,6 +27,11 @@ const userSlice = createSlice({
     // switch auth status
     setAuthStatus: (state, action) => {
       state.authStatus = action.payload;
+    },
+
+    // 修改login状态
+    setLoginStatus: (state, action) => {
+      state.loginStatus = action.payload;
     }
   },
 
@@ -38,7 +44,10 @@ const userSlice = createSlice({
     });
 
     builder.addCase(getUserInfoAction.fulfilled, (state, action) => {
-      if (action.payload.code === 200) state.userInfo = action.payload.data;
+      if (action.payload.code === 200) {
+        state.userInfo = action.payload.data;
+        state.loginStatus = true;
+      }
     });
 
     builder.addCase(getMenuListAction.fulfilled, (state, action) => {
@@ -51,5 +60,5 @@ const userSlice = createSlice({
 });
 
 export { userSignInAction, getUserInfoAction, getMenuListAction };
-export const { isLoading, setAuthToken, setAuthStatus } = userSlice.actions;
+export const { isLoading, setAuthToken, setAuthStatus, setLoginStatus } = userSlice.actions;
 export default userSlice.reducer;

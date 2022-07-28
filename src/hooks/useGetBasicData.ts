@@ -7,12 +7,12 @@ import { getMenuListAction, getUserInfoAction } from '../store/user';
 // 获取基本信息数据
 const useGetBasicData = () => {
   const dispatch = useAppDispath();
-  const { menuList, userInfo } = useSelector((state: IRootState) => state.user);
+  const { menuList, userInfo, loginStatus } = useSelector((state: IRootState) => state.user);
   useEffect(() => {
     menuList.length || dispatch(getMenuListAction());
     Object.keys(userInfo).length || dispatch(getUserInfoAction());
   }, []);
-  return { menuList, userInfo };
+  return { menuList, userInfo, loginStatus };
 };
 
 export { useGetBasicData };

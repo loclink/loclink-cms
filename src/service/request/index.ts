@@ -1,9 +1,8 @@
-import axios, { Axios, AxiosError, AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { RequestConfig, RequestInterceptors } from './types';
 
 const DEFAULT_LOADING = false;
 const DEFAULT_MESSAGE = false;
-
 class Request {
   instance: AxiosInstance;
   interceptors?: RequestInterceptors;
@@ -16,6 +15,7 @@ class Request {
   showMessage?: (message: string) => void;
   showErrorMessage?: (errMessage: string) => void;
   authRequest?: (res: AxiosResponse) => void;
+  
 
   constructor(config: RequestConfig) {
     this.instance = axios.create(config);

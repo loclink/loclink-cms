@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { Layout, Menu } from 'antd';
 import { Outlet } from 'react-router-dom';
 import {
@@ -12,10 +12,8 @@ import { useAuthRouter } from '../../hooks/useAuthRouter';
 
 const Main: React.FC = memo(() => {
   const [collapsed, setCollapsed] = useState(false);
-  // useEffect(() => {
-  //   Object.keys(userInfo).length || dispatch(getUserInfoAction());
-  //   menuList.length || dispatch(getMenuListAction());
-  // }, [menuList]);
+
+  // useEffect(() => {}, []);
 
   const { isFinish } = useAuthRouter();
 

@@ -1,6 +1,6 @@
 import store from '../store';
 import Request from './request';
-import { isLoading } from '../store/user';
+import { isLoading, setLoginStatus } from '../store/user';
 
 import { BASE_URL, TIME_OUT } from './request/config';
 import { message } from 'antd';
@@ -12,8 +12,9 @@ const request = new Request({
   authRequest(res) {
     // 身份过期
     if (res.data.code === 10401) {
-      window.location.pathname = '/login';
-      message.error(res.data.message);
+      console.log(res);
+      store.dispatch(setLoginStatus(false));
+      if (res.config.url !== '/user/menu') message.error(res.data.message);
     }
   },
 
