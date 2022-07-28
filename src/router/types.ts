@@ -5,7 +5,7 @@ interface RouteObject {
   index?: boolean;
   path: string;
   auth?: boolean;
+  mete?: object;
 }
-
 
 export type { RouteObject };

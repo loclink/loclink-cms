@@ -2,13 +2,11 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { RouteObject } from './types';
 
-const Login = React.lazy(() => import('@/views/login'));
-const Main = React.lazy(() => import('@/views/main'));
-
-const Blog = React.lazy(() => import('@/views/main/blog'));
-const System = React.lazy(() => import('@/views/main/system'));
-
 const Overview = React.lazy(() => import('@/views/main/overview'));
+const Main = React.lazy(() => import('@/views/main'));
+const System = React.lazy(() => import('@/views/main/system'));
+const Login = React.lazy(() => import('@/views/login'));
+
 const Skill = React.lazy(() => import('@/views/main/overview/skill'));
 
 const Article = React.lazy(() => import('@/views/main/blog/article'));
@@ -23,9 +21,8 @@ const NotFound = React.lazy(() => import('@/views/not-found'));
 const routes: RouteObject[] = [
   {
     path: '/',
-    element: <Navigate to={'/main'} replace={true} />
+    element: <Navigate to="/main" />
   },
-
   {
     path: '/main',
     element: <Main />,
@@ -42,7 +39,6 @@ const routes: RouteObject[] = [
       },
       {
         path: '/main/blog',
-        element: <Blog />,
         children: [
           {
             path: '/main/blog/article',

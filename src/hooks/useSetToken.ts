@@ -5,7 +5,6 @@ import { useAppDispath } from '../store';
 import { IRootState } from '../store/types';
 import { setAuthToken } from '../store/user';
 import { getCache } from '../utils/cache';
-import { useGetBasicData } from './useGetBasicData';
 
 // 获取token
 const useSetToken = () => {
@@ -20,6 +19,8 @@ const useSetToken = () => {
       token ? dispatch(setAuthToken(token)) : navigate({ pathname: '/login' });
     }
   }, []);
+
+  return authToken
 };
 
 export { useSetToken };

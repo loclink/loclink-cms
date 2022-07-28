@@ -8,7 +8,7 @@ const request = new Request({
   baseURL: BASE_URL,
   timeout: TIME_OUT,
 
-  // 校验请求
+  // 请求校验
   authRequest(res) {
     // 身份过期
     if (res.data.code === 10401) {

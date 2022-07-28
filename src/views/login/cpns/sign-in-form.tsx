@@ -11,7 +11,7 @@ const SignInForm = memo(() => {
   const navigate = useNavigate();
   const onFinish = (values: any) => {
     dispatch(userSignInAction(values)).then((res: any) => {
-      if(res.payload.code === 200) navigate({pathname: '/main'})
+      if (res.payload.code === 200) navigate({ pathname: '/main' });
     });
   };
 

@@ -1,6 +1,5 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useState } from 'react';
 import { Layout, Menu } from 'antd';
-import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import {
   MenuFoldOutlined,
@@ -9,18 +8,16 @@ import {
   UserOutlined,
   VideoCameraOutlined
 } from '@ant-design/icons';
-import { useAppDispath } from '../../store';
-import { IRootState } from '../../store/types';
-import { getMenuListAction, getUserInfoAction } from '../../store/user';
-import { useGetBasicData } from '../../hooks/useGetBasicData';
+import { useAuthRouter } from '../../hooks/useAuthRouter';
 
 const Main: React.FC = memo(() => {
-  const dispatch = useAppDispath();
   const [collapsed, setCollapsed] = useState(false);
   // useEffect(() => {
   //   Object.keys(userInfo).length || dispatch(getUserInfoAction());
   //   menuList.length || dispatch(getMenuListAction());
   // }, [menuList]);
+
+  const { isFinish } = useAuthRouter();
 
   return (
     <div className="main">
@@ -66,7 +63,7 @@ const Main: React.FC = memo(() => {
               minHeight: 280
             }}
           >
-            <Outlet />
+            {isFinish ? <Outlet /> : null}
           </Layout.Content>
         </Layout>
       </Layout>
