@@ -2,12 +2,12 @@ import React, { memo } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
 
-import { useAppDispath } from '../../../store';
+import { useAppDispatch } from '../../../store';
 import { setLoginStatus, userSignInAction } from '../../../store/user';
 import { useNavigate } from 'react-router-dom';
 
 const SignInForm = memo(() => {
-  const dispatch = useAppDispath();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const onFinish = (values: any) => {
     dispatch(userSignInAction(values)).then((res: any) => {

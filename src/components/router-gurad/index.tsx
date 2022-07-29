@@ -1,10 +1,20 @@
 import { RouteObject } from '../../router/types';
-import { useRoutes } from 'react-router-dom';
+import { useLocation, useRoutes } from 'react-router-dom';
+import React, { useEffect } from 'react';
+
+interface Props {
+  routes: RouteObject[];
+}
 
 // 导航守卫组件
-const RouterGurad = (routes: RouteObject[]) => {
+const RouterGurad: React.FC<Props> = (props) => {
+  const { routes } = props;
   const Route = useRoutes(routes);
-  return Route;
+  const { pathname } = useLocation();
+  useEffect(() => {
+    console.log('%c [ RouterGurad ]-16', 'font-size:13px; background:pink; color:#bf2c9f;', 'RouterGurad')
+  }, [pathname]);
+  return <>{Route}</>;
 };
 
 export default RouterGurad;

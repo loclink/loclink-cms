@@ -10,6 +10,8 @@ const userSlice = createSlice({
     userInfo: {},
     loading: false,
     menuList: [],
+    sideMenuList: [],
+    menuCollapsed: false,
     authStatus: false
   },
 
@@ -32,6 +34,14 @@ const userSlice = createSlice({
     // 修改login状态
     setLoginStatus: (state, action) => {
       state.loginStatus = action.payload;
+    },
+
+    setSideMenuList: (state, action) => {
+      state.sideMenuList = action.payload;
+    },
+
+    setMenuCollapsed: (state) => {
+      state.menuCollapsed = !state.menuCollapsed;
     }
   },
 
@@ -60,5 +70,6 @@ const userSlice = createSlice({
 });
 
 export { userSignInAction, getUserInfoAction, getMenuListAction };
-export const { isLoading, setAuthToken, setAuthStatus, setLoginStatus } = userSlice.actions;
+export const { isLoading, setAuthToken, setAuthStatus, setLoginStatus, setSideMenuList, setMenuCollapsed } =
+  userSlice.actions;
 export default userSlice.reducer;

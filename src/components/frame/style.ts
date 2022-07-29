@@ -1,7 +1,8 @@
-import styled from 'styled-components';
-const MainWrapper = styled.div`
-  width: 100%;
-  height: 100%;
+import styled from 'styled-components'
+
+const FrameWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
 
   .layout-side {
     width: 100%;
@@ -27,6 +28,7 @@ const MainWrapper = styled.div`
       box-sizing: border-box;
     }
   }
-`;
+`
 
-export { MainWrapper };
+
+export {FrameWrapper}

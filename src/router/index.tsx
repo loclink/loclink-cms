@@ -3,11 +3,12 @@ import { Navigate } from 'react-router-dom';
 import { RouteObject } from './types';
 
 const Overview = React.lazy(() => import('@/views/main/overview'));
-const Main = React.lazy(() => import('@/views/main'));
 const System = React.lazy(() => import('@/views/main/system'));
 const Login = React.lazy(() => import('@/views/login'));
 
 const Skill = React.lazy(() => import('@/views/main/overview/skill'));
+
+const Main = React.lazy(() => import('@/views/main'));
 
 const Article = React.lazy(() => import('@/views/main/blog/article'));
 const ArticleTag = React.lazy(() => import('@/views/main/blog/article-tag'));
