@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 const MainWrapper = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 
   .layout-side {
     width: 100%;
@@ -11,6 +11,7 @@ const MainWrapper = styled.div`
   .layout-right {
     .header {
       background-color: #fff;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
       .trigger:hover {
         color: #1890ff;
       }
@@ -25,6 +26,8 @@ const MainWrapper = styled.div`
     .content {
       background-color: #fff;
       box-sizing: border-box;
+      border-radius: 5px;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
     }
   }
 `;

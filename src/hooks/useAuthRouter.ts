@@ -58,6 +58,7 @@ const useAuthRouter = () => {
   let { pathname } = useLocation();
 
   useEffect(() => {
+
     // 未登录则跳转至登录页
     if (!loginStatus) navigate({ pathname: '/login' });
 

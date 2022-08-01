@@ -1,23 +1,17 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Navigate } from 'react-router-dom';
 import { RouteObject } from './types';
+import Main from '@/views/main';
 
-const Overview = React.lazy(() => import('@/views/main/overview'));
-const System = React.lazy(() => import('@/views/main/system'));
-const Login = React.lazy(() => import('@/views/login'));
-
-const Skill = React.lazy(() => import('@/views/main/overview/skill'));
-
-const Main = React.lazy(() => import('@/views/main'));
-
-const Article = React.lazy(() => import('@/views/main/blog/article'));
-const ArticleTag = React.lazy(() => import('@/views/main/blog/article-tag'));
-
-const User = React.lazy(() => import('@/views/main/system/user'));
-const Menu = React.lazy(() => import('@/views/main/system/menu'));
-const Role = React.lazy(() => import('@/views/main/system/role'));
-
-const NotFound = React.lazy(() => import('@/views/not-found'));
+// 懒加载方法
+function LazyWrapper(path: string) {
+  const Component = lazy(() => import(`@/views${path}`));
+  return (
+    <Suspense fallback={null}>
+      <Component />
+    </Suspense>
+  );
+}
 
 const routes: RouteObject[] = [
   {
@@ -30,42 +24,43 @@ const routes: RouteObject[] = [
     children: [
       {
         path: '/main/overview',
-        element: <Overview />,
+        element: LazyWrapper('/main/overview'),
         children: [
           {
             path: '/main/overview/skill',
-            element: <Skill />
+            element: LazyWrapper('/main/overview/skill')
           }
         ]
       },
       {
         path: '/main/blog',
+        element: LazyWrapper('/main/blog'),
         children: [
           {
             path: '/main/blog/article',
-            element: <Article />
+            element: LazyWrapper('/main/blog/article')
           },
           {
             path: '/main/blog/article-tag',
-            element: <ArticleTag />
+            element: LazyWrapper('/main/blog/article-tag')
           }
         ]
       },
       {
         path: '/main/system',
-        element: <System />,
+        element: LazyWrapper('/main/system'),
         children: [
           {
             path: '/main/system/user',
-            element: <User />
+            element: LazyWrapper('/main/system/user')
           },
           {
             path: '/main/system/role',
-            element: <Role />
+            element: LazyWrapper('/main/system/role')
           },
           {
             path: '/main/system/menu',
-            element: <Menu />
+            element: LazyWrapper('/main/system/menu')
           }
         ]
       }
@@ -73,12 +68,12 @@ const routes: RouteObject[] = [
   },
   {
     path: '/login',
-    element: <Login />
+    element: LazyWrapper('/login')
   },
 
   {
     path: '*',
-    element: <NotFound />
+    element: LazyWrapper('/not-found')
   }
 ];
 
