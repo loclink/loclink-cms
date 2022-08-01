@@ -15,7 +15,7 @@ const getUserInfo = async (): Promise<IResponseData> => {
   return request.request({
     url: '/user/info',
     method: 'post',
-    loading: true,
+    loading: true
   });
 };
 
@@ -27,4 +27,12 @@ const getMenuList = async (): Promise<IResponseData> => {
   });
 };
 
-export { userSignIn, getUserInfo, getMenuList };
+const getUserList = async (): Promise<IResponseData> => {
+  return request.request({
+    url: '/user/list',
+    method: 'get',
+    loading: true
+  });
+};
+
+export { userSignIn, getUserInfo, getMenuList, getUserList };

@@ -5,6 +5,7 @@ interface IUser {
   menuList: [];
   sideMenuList: any[];
   loginStatus: boolean;
+  userListData: any[]
 }
 
 export type { IUser };

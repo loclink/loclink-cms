@@ -4,14 +4,14 @@ import { RouteObject } from './types';
 import Main from '@/views/main';
 
 // 懒加载方法
-function LazyWrapper(path: string) {
+const LazyWrapper = (path: string) => {
   const Component = lazy(() => import(`@/views${path}`));
   return (
     <Suspense fallback={null}>
       <Component />
     </Suspense>
   );
-}
+};
 
 const routes: RouteObject[] = [
   {

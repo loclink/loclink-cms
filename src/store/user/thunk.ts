@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getMenuList, getUserInfo, userSignIn } from '../../service/user';
+import { getMenuList, getUserInfo, getUserList, userSignIn } from '../../service/user';
 import { IAccountInfo } from '../../service/types';
 
 const userSignInAction = createAsyncThunk('user/auth', async (accountInfo: IAccountInfo) => {
@@ -17,4 +17,9 @@ const getMenuListAction = createAsyncThunk('user/menu', async () => {
   return result;
 });
 
-export { userSignInAction, getUserInfoAction, getMenuListAction };
+const getUserListAction = createAsyncThunk('user/list', async() => {
+  const result = await getUserList()
+  return result
+})
+
+export { userSignInAction, getUserInfoAction, getMenuListAction, getUserListAction };

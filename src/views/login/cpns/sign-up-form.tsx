@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 
-const SignOnForm = memo(() => {
+const SignUpForm = memo(() => {
   const onFinish = (values: any) => {
     console.log(values);
   };
@@ -40,5 +40,5 @@ const SignOnForm = memo(() => {
     </div>
   );
 });
-SignOnForm.displayName = 'SignOn';
-export default SignOnForm;
+SignUpForm.displayName = 'SignUp';
+export default SignUpForm;

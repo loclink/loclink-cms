@@ -1,7 +1,6 @@
 import store from '../store';
 import Request from './request';
 import { isLoading, setLoginStatus } from '../store/user';
-
 import { BASE_URL, TIME_OUT } from './request/config';
 import { message } from 'antd';
 const request = new Request({
@@ -12,9 +11,9 @@ const request = new Request({
   authRequest(res) {
     // 身份过期
     if (res.data.code === 10401) {
-      console.log(res);
+      const errorMessage = store.getState().user.authToken ? res.data.message : '当前未登录';
       store.dispatch(setLoginStatus(false));
-      if (res.config.url !== '/user/menu') message.error(res.data.message);
+      if (res.config.url !== '/user/menu') message.error(errorMessage);
     }
   },
 
