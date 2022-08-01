@@ -5,13 +5,12 @@ import { getMenuListAction, getUserInfoAction, userSignInAction } from './thunk'
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    loginStatus: true,
-    authToken: '',
-    userInfo: {},
-    loading: false,
-    menuList: [],
-    sideMenuList: [],
-    authStatus: false
+    loginStatus: true, // 登录状态
+    authToken: '', // token
+    userInfo: {}, // 当前登录用户的信息
+    loading: false, // 是否处于请求加载
+    menuList: [], // 当前用户拥有的菜单权限列表
+    sideMenuList: [] // 侧边栏菜单数据
   },
 
   reducers: {
@@ -23,11 +22,6 @@ const userSlice = createSlice({
     // 设置token
     setAuthToken: (state, action) => {
       state.authToken = action.payload;
-    },
-
-    // switch auth status
-    setAuthStatus: (state, action) => {
-      state.authStatus = action.payload;
     },
 
     // 修改login状态
@@ -65,5 +59,5 @@ const userSlice = createSlice({
 });
 
 export { userSignInAction, getUserInfoAction, getMenuListAction };
-export const { isLoading, setAuthToken, setAuthStatus, setLoginStatus, setSideMenuList } = userSlice.actions;
+export const { isLoading, setAuthToken, setLoginStatus, setSideMenuList } = userSlice.actions;
 export default userSlice.reducer;
