@@ -36,8 +36,9 @@ const userSlice = createSlice({
     }
   },
 
-  // 提交用户登录校验后的token数据
+  // 异步reducer 放于此管理
   extraReducers: (builder) => {
+    // 提交用户登录校验后的token数据
     builder.addCase(userSignInAction.fulfilled, (state, action) => {
       if (action.payload.code === 200) {
         state.authToken = action.payload.data.token;
@@ -53,7 +54,7 @@ const userSlice = createSlice({
       }
     });
 
-    // 提价用户菜单数据
+    // 提交用户菜单数据
     builder.addCase(getMenuListAction.fulfilled, (state, action) => {
       if (action.payload.code === 200) {
         state.menuList = action.payload.data;

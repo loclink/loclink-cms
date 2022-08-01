@@ -1,10 +1,11 @@
 // 使用craco配置webpack
 const path = require('path');
-const resolve = dir => path.resolve(__dirname, dir);
+const CracoAntDesignPlugin = require('craco-antd');
+const resolve = (dir) => path.resolve(__dirname, dir);
+
 /**
  * @type {import ('webpack').Configuration}
  */
-
 const config = {
   devtool: 'none',
   alias: {
@@ -14,5 +15,12 @@ const config = {
 };
 
 module.exports = {
-  webpack: config
+  webpack: config,
+  plugins: [
+    {
+      plugin: CracoAntDesignPlugin,
+      options: {
+      }
+    }
+  ]
 };

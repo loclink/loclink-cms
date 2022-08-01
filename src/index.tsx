@@ -7,14 +7,17 @@ import { BrowserRouter } from 'react-router-dom';
 // antd的国际化以及公共样式文件的引入
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
-import './assets/css/base.css';
+import './assets/less/base.less';
+
+
+// import '@ant-design/pro-components/dist/components.less';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <ConfigProvider locale={zhCN}>
+      <ConfigProvider locale={zhCN} >
         <App />
       </ConfigProvider>
     </BrowserRouter>
