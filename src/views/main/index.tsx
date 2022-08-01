@@ -1,18 +1,16 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
-
 import { useAuthRouter } from '../../hooks/useAuthRouter';
+
+import MainBreadcrumb from '../../components/main-breadcrumb';
 import SideMenu from '../../components/side-menu';
 import Header from '../../components/header';
-import { useSelector } from 'react-redux';
-import { IRootState } from '../../store/types';
 import { MainWrapper } from './style';
-import MainBreadcrumb from '../../components/main-breadcrumb';
 
 const Main: React.FC = memo(() => {
+  const [ collapsed, setCollapsed  ] = useState(false)
   const { isFinish } = useAuthRouter();
-  const { menuCollapsed } = useSelector((state: IRootState) => state.user);
 
   useEffect(() => {
     console.log('main');
@@ -21,12 +19,12 @@ const Main: React.FC = memo(() => {
   return (
     <MainWrapper className="main">
       <Layout className="layout-side">
-        <Layout.Sider trigger={null} collapsible collapsed={menuCollapsed}>
+        <Layout.Sider trigger={null} collapsible collapsed={collapsed}>
           <SideMenu />
         </Layout.Sider>
         <Layout className="layout-right">
           <Layout.Header className="header" style={{ padding: 0 }}>
-            <Header />
+            <Header collapsed={collapsed} changeCollapsed={() => setCollapsed(!collapsed)}/>
           </Layout.Header>
           <MainBreadcrumb />
 

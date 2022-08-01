@@ -11,7 +11,6 @@ const userSlice = createSlice({
     loading: false,
     menuList: [],
     sideMenuList: [],
-    menuCollapsed: false,
     authStatus: false
   },
 
@@ -38,10 +37,6 @@ const userSlice = createSlice({
 
     setSideMenuList: (state, action) => {
       state.sideMenuList = action.payload;
-    },
-
-    setMenuCollapsed: (state) => {
-      state.menuCollapsed = !state.menuCollapsed;
     }
   },
 
@@ -70,6 +65,5 @@ const userSlice = createSlice({
 });
 
 export { userSignInAction, getUserInfoAction, getMenuListAction };
-export const { isLoading, setAuthToken, setAuthStatus, setLoginStatus, setSideMenuList, setMenuCollapsed } =
-  userSlice.actions;
+export const { isLoading, setAuthToken, setAuthStatus, setLoginStatus, setSideMenuList } = userSlice.actions;
 export default userSlice.reducer;
