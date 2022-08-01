@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
 
@@ -8,13 +8,15 @@ import Header from '../../components/header';
 import { useSelector } from 'react-redux';
 import { IRootState } from '../../store/types';
 import { MainWrapper } from './style';
+import MainBreadcrumb from '../../components/main-breadcrumb';
 
 const Main: React.FC = memo(() => {
+  const { isFinish } = useAuthRouter();
+  const { menuCollapsed } = useSelector((state: IRootState) => state.user);
+
   useEffect(() => {
     console.log('main');
   }, []);
-  const { isFinish } = useAuthRouter();
-  const { menuCollapsed } = useSelector((state: IRootState) => state.user);
 
   return (
     <MainWrapper className="main">
@@ -26,10 +28,12 @@ const Main: React.FC = memo(() => {
           <Layout.Header className="header" style={{ padding: 0 }}>
             <Header />
           </Layout.Header>
+          <MainBreadcrumb />
+
           <Layout.Content
             className="content"
             style={{
-              margin: 20,
+              margin: '0 20px 20px 20px',
               padding: 20
             }}
           >
