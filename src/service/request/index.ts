@@ -12,7 +12,7 @@ class Request {
 
   showLoading?: () => void;
   hideLoading?: () => void;
-  showMessage?: (message: string) => void;
+  showMessage?: (res: AxiosResponse) => void;
   showErrorMessage?: (errMessage: string) => void;
   authRequest?: (res: AxiosResponse) => void;
   
@@ -55,7 +55,7 @@ class Request {
     this.instance.interceptors.response.use(
       (res: AxiosResponse) => {
         this.loading && this.hideLoading && this.hideLoading();
-        this.message && this.showMessage && this.showMessage(res.data.message);
+        this.message && this.showMessage && this.showMessage(res);
         this.authRequest && this.authRequest(res)
         return res.data;
       },

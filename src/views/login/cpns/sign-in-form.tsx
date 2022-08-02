@@ -2,21 +2,12 @@ import React, { memo } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
 
-import { useAppDispatch } from '../../../store';
-import { setLoginStatus, userSignInAction } from '../../../store/user';
-import { useNavigate } from 'react-router-dom';
+interface Props {
+  onFinish: (values: any) => void;
+}
 
-const SignInForm = memo(() => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const onFinish = (values: any) => {
-    dispatch(userSignInAction(values)).then((res: any) => {
-      if (res.payload.code === 200) {
-        dispatch(setLoginStatus(true));
-        navigate({ pathname: '/main' });
-      }
-    });
-  };
+const SignInForm: React.FC<Props> = memo((props: Props) => {
+  const { onFinish } = props;
 
   return (
     <div>

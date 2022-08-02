@@ -10,7 +10,6 @@ import zhCN from 'antd/es/locale/zh_CN';
 import './assets/less/base.less';
 
 
-// import '@ant-design/pro-components/dist/components.less';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 

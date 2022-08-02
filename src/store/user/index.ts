@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { setCache } from '../../utils/cache';
-import { getMenuListAction, getUserInfoAction, getUserListAction, userSignInAction } from './thunk';
+import { getMenuListAction, getUserInfoAction, getUserListAction, userSignInAction, userSignUpAction } from './thunk';
 
 const userSlice = createSlice({
   name: 'user',
@@ -43,6 +43,13 @@ const userSlice = createSlice({
       if (action.payload.code === 200) {
         state.authToken = action.payload.data.token;
         setCache('token', state.authToken);
+      }
+    });
+
+    // 用户注册
+    builder.addCase(userSignUpAction.fulfilled, (state, action) => {
+      if (action.payload.code === 200) {
+        return;
       }
     });
 

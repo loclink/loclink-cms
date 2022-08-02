@@ -3,7 +3,7 @@ import Request from './request';
 import { isLoading, setLoginStatus } from '../store/user';
 import { BASE_URL, TIME_OUT } from './request/config';
 import { message } from 'antd';
-const request = new Request({
+const http = new Request({
   baseURL: BASE_URL,
   timeout: TIME_OUT,
 
@@ -28,8 +28,9 @@ const request = new Request({
   },
 
   // 显示成功信息方法
-  showMessage(msg) {
-    message.success(msg);
+  showMessage(res) {
+    if (res.data.code === 200) message.success(res.data.message);
+    else message.error(res.data.message);
   },
 
   // 显示错误信息方法
@@ -62,4 +63,4 @@ const request = new Request({
     // }
   }
 });
-export { request };
+export { http };

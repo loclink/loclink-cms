@@ -13,7 +13,7 @@ interface RequestConfig extends AxiosRequestConfig {
   message?: boolean;
   showLoading?: () => void;
   hideLoading?: () => void;
-  showMessage?: (message: string) => void;
+  showMessage?: (res: AxiosResponse) => void;
   showErrorMessage?: (errMessage: string) => void;
   authRequest?:(res:AxiosResponse) => void
 }
