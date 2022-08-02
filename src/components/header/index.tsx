@@ -1,14 +1,14 @@
 import React, { memo } from 'react';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import MainBreadcrumb from '../main-breadcrumb';
 
-interface Props{
-  collapsed: boolean
-  changeCollapsed: () => void
+interface Props {
+  collapsed: boolean;
+  changeCollapsed: () => void;
 }
 
 const Header: React.FC<Props> = memo((props: Props) => {
-
-  const { collapsed, changeCollapsed } = props
+  const { collapsed, changeCollapsed } = props;
 
   return (
     <>
@@ -16,6 +16,8 @@ const Header: React.FC<Props> = memo((props: Props) => {
         className: 'trigger',
         onClick: () => changeCollapsed && changeCollapsed()
       })}
+
+      <MainBreadcrumb />
     </>
   );
 });

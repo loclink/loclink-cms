@@ -8,7 +8,6 @@ import { useGetBasicData } from './useGetBasicData';
 
 // 处理路由跳转，当手动跳转main时锁定并跳转至当前用户的第一个菜单路由
 const handleDefaultJump = (path: string, menus: any[], navigate: NavigateFunction) => {
-  console.log(location)
   const getTargetPath = (menu: any): any => {
     if (menu?.children && menu?.children[0]) {
       return getTargetPath(menu?.children[0]);
@@ -17,7 +16,6 @@ const handleDefaultJump = (path: string, menus: any[], navigate: NavigateFunctio
     }
   };
   const menu = searchMenuDetail(path, menus);
-  console.log(menu);
   menu && navigate({ pathname: getTargetPath(menu), search: location.search }, { replace: true });
 };
 

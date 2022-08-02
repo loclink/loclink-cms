@@ -9,7 +9,7 @@ import Header from '../../components/header';
 import { MainWrapper } from './style';
 
 const Main: React.FC = memo(() => {
-  const [ collapsed, setCollapsed  ] = useState(false)
+  const [collapsed, setCollapsed] = useState(false);
   const { isFinish } = useAuthRouter();
 
   useEffect(() => {
@@ -18,21 +18,27 @@ const Main: React.FC = memo(() => {
 
   return (
     <MainWrapper className="main">
-      <Layout className="layout-side">
-        <Layout.Sider trigger={null} collapsible collapsed={collapsed}>
+      <Layout className="layout">
+        <Layout.Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          className="layout-side"
+       
+        >
           <SideMenu />
         </Layout.Sider>
-        <Layout className="layout-right">
+        <Layout className="layout-right" >
           <Layout.Header className="header" style={{ padding: 0 }}>
-            <Header collapsed={collapsed} changeCollapsed={() => setCollapsed(!collapsed)}/>
+            <Header collapsed={collapsed} changeCollapsed={() => setCollapsed(!collapsed)} />
           </Layout.Header>
-          <MainBreadcrumb />
 
           <Layout.Content
             className="content"
             style={{
-              margin: '0 20px 20px 20px',
-              padding: 20
+              margin: 20,
+              padding: 20,
+              overflow: 'initial'
             }}
           >
             {isFinish ? <Outlet /> : null}
