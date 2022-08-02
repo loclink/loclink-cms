@@ -18,7 +18,7 @@ const MainBreadcrumb = memo(() => {
     <MainBreadcrumbWrapper>
       <Breadcrumb>
         {breadcrumb.map((item) => {
-          return <Breadcrumb.Item key={item.key}>{item.label}</Breadcrumb.Item>;
+          return item ? <Breadcrumb.Item key={item.key}>{item?.label}</Breadcrumb.Item> : null;
         })}
       </Breadcrumb>
     </MainBreadcrumbWrapper>

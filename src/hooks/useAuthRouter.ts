@@ -3,7 +3,7 @@ import { NavigateFunction, useLocation, useMatch, useNavigate } from 'react-rout
 import { RouteObject } from '../router/types';
 import { useAppDispatch } from '../store';
 import { setSideMenuList } from '../store/user';
-import { handleTailRemove } from '../utils/handle-path';
+import { handleFourPath, handleTailRemove } from '../utils/handle-path';
 import { useGetBasicData } from './useGetBasicData';
 
 // 处理路由跳转，当手动跳转main时锁定并跳转至当前用户的第一个菜单路由
@@ -63,7 +63,7 @@ const useAuthRouter = () => {
     if (!menuList.length) return;
 
     if (routeMatch) pathname = (menuList as any)[0].path;
-    const menuDetail = searchMenuDetail(handleTailRemove(pathname, '/'), menuList);
+    const menuDetail = searchMenuDetail(handleFourPath(pathname), menuList);
 
     // 未匹配到则跳转至404
     if (!menuDetail) navigate({ pathname: '/404' });

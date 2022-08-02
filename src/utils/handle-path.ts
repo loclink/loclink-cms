@@ -5,4 +5,12 @@ const handleTailRemove = (message: string, symbol: string): string => {
     return message;
   }
 };
-export { handleTailRemove };
+
+// 如果菜单为4级则转换为3级菜单并返回
+const handleFourPath = (path: string) => {
+  const finalPath = handleTailRemove(path, '/');
+  const pathStrArr = finalPath.split('/');
+  if (pathStrArr.length >= 5) pathStrArr.pop();
+  return pathStrArr.join('/');
+};
+export { handleTailRemove, handleFourPath };
