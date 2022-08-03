@@ -1,16 +1,14 @@
 import styled from 'styled-components';
 const MainWrapper = styled.div`
-  width: 100vw;
-
   .layout {
     width: 100%;
     height: 100%;
-    .header {
-      display: flex;
-      align-items: center;
-    }
 
     .layout-side {
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow-y: scroll;
       ::-webkit-scrollbar {
         display: none; /* Chrome Safari */
       }
@@ -21,6 +19,12 @@ const MainWrapper = styled.div`
       .header {
         background-color: #fff;
         box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+        position: sticky;
+        top: 0;
+        display: flex;
+        align-items: center;
+        z-index: 999;
+
         .trigger:hover {
           color: #1890ff;
         }

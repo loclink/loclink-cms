@@ -16,7 +16,6 @@ const Header: React.FC<Props> = memo((props: Props) => {
         className: 'trigger',
         onClick: () => changeCollapsed && changeCollapsed()
       })}
-
       <MainBreadcrumb />
     </>
   );
