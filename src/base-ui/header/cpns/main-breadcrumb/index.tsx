@@ -1,11 +1,11 @@
 import React, { memo, useEffect, useState } from 'react';
 import { Breadcrumb } from 'antd';
 import { MainBreadcrumbWrapper } from './style';
-import { handleBreadcrumb } from '../../utils/menu-map';
+import { handleBreadcrumb } from '../../../../utils/menu-map';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { IRootState } from '../../store/types';
-import { handleTailRemove } from '../../utils/handle-path';
+import { IRootState } from '../../../../store/types';
+import { handleTailRemove } from '../../../../utils/handle-path';
 const MainBreadcrumb = memo(() => {
   const { pathname } = useLocation();
   const { sideMenuList } = useSelector((state: IRootState) => state.user);
