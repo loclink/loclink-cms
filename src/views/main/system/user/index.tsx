@@ -17,7 +17,6 @@ const User = memo(() => {
   const {userListData}  = useSelector((state: IRootState) => state.user)
   const [dataSource, setDataSource] = useState<any>([])
 
-  
   // 处理表格数据
   const handleDataSource = (userListData:any[]) => {
     return userListData.map(item =>( {...item, key: item.id}))

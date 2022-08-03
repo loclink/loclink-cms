@@ -56,10 +56,16 @@ const useAuthRouter = () => {
   const [isFinish, setIsFinish] = useState(false);
   const { menuList, loginStatus } = useGetBasicData();
   let { pathname } = useLocation();
+
   useEffect(() => {
     // 未登录则跳转至登录页
-    if (!loginStatus) navigate({ pathname: '/login' });
+    if (!loginStatus) {
+      navigate({ pathname: '/login' }, { replace: true });
+      return;
+    }
+  }, [pathname, loginStatus]);
 
+  useEffect(() => {
     if (!menuList.length) return;
 
     if (routeMatch) pathname = (menuList as any)[0].path;
@@ -75,7 +81,7 @@ const useAuthRouter = () => {
 
     // 修改完成状态 - 完成后才渲染 main 下的 Outlet
     setIsFinish(menuList.length);
-  }, [menuList, loginStatus, pathname]);
+  }, [menuList, pathname]);
 
   return { isFinish };
 };

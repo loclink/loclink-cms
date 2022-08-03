@@ -3,7 +3,6 @@ import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
 import { useAuthRouter } from '../../hooks/useAuthRouter';
 
-import MainBreadcrumb from '../../components/main-breadcrumb';
 import SideMenu from '../../components/side-menu';
 import Header from '../../components/header';
 import { MainWrapper } from './style';
