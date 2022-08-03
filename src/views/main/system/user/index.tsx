@@ -1,12 +1,14 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from '@/store';
 import { getUserListAction } from '@/store/user';
-import TablePage from '@/components/table-page';
 import { tablePageConfig } from './config/table-page-config';
 import { IDataType } from './types';
 import { useSelector } from 'react-redux';
-import { IRootState } from '../../../../store/types';
+import { IRootState } from '@/store/types';
 import { useTableAction } from '@/hooks/useTableAction';
+
+import FormPage from '@/components/form-page';
+import TablePage from '@/components/table-page';
 
 const TablePageWrapped = memo(TablePage<IDataType>)
 
@@ -27,21 +29,21 @@ const User = memo(() => {
     console.log(record)
   }, [])
 
-
   // 处理点击删除按钮
   const handleClickDeleteBtn = useCallback((record: IDataType) => {
     console.log(record)
   }, [])
 
-
   //  加入表格 action
   const config = useTableAction<IDataType>(tablePageConfig, [{
     name: '编辑',
     onClick: handleClickEditBtn
-  }, {
+  }, 
+  {
     name: '删除',
     onClick: handleClickDeleteBtn
-  }])
+  }
+])
 
   // 拿到列表数据
   useEffect(() => { dispatch(getUserListAction()) }, []);
@@ -53,6 +55,7 @@ const User = memo(() => {
 
   return (
     <div>
+      <FormPage></FormPage>
       <TablePageWrapped tablePageConfig={config} dataSource={dataSource}></TablePageWrapped>
     </div>
   );

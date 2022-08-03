@@ -8,6 +8,7 @@ interface Props<T> {
   dataSource: T[];
 }
 
+// 表格组件
 const TablePage = <T extends {}>(props: Props<T>) => {
   const { tablePageConfig, dataSource = [] } = props;
   const { tableConfig, columns } = tablePageConfig;
@@ -19,7 +20,6 @@ const TablePage = <T extends {}>(props: Props<T>) => {
         bordered={tableConfig.bordered}
         size={tableConfig.size}
         title={() => <TableHeader title={tableConfig.title} />}
-        footer={() => 'Footer'}
       />
     </div>
   );

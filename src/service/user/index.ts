@@ -12,6 +12,7 @@ const userSignIn = async (accountInfo: IAccountInfo): Promise<IResponseData> => 
   });
 };
 
+// 用户注册
 const userSignUp = async (accountInfo: IAccountInfo): Promise<IResponseData> => {
   return http.request({
     url: '/user',
@@ -22,6 +23,7 @@ const userSignUp = async (accountInfo: IAccountInfo): Promise<IResponseData> => 
   });
 };
 
+// 用户信息
 const getUserInfo = async (): Promise<IResponseData> => {
   return http.request({
     url: '/user/info',
@@ -30,6 +32,7 @@ const getUserInfo = async (): Promise<IResponseData> => {
   });
 };
 
+// 菜单列表
 const getMenuList = async (): Promise<IResponseData> => {
   return http.request({
     url: '/user/menu',
