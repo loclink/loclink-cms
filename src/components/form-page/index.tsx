@@ -1,26 +1,55 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useRef } from 'react';
 import { Button, Cascader, DatePicker, Form, Input, InputNumber, Select, Switch, TreeSelect } from 'antd';
+import { IFormPageConfig, ItemType } from './types';
+import { FormPageWrapper } from './style';
 
-type SizeType = Parameters<typeof Form>[0]['size'];
+interface Props {
+  formPageConfig: IFormPageConfig;
+  onFinish: (values: any) => void;
+}
 
 // 表单组件
-const FormPage: React.FC = memo(() => {
-  const [componentSize, setComponentSize] = useState<SizeType | 'default'>('default');
-  const onFormLayoutChange = ({ size }: { size: SizeType }) => {
-    setComponentSize(size);
+const FormPage: React.FC<Props> = memo((props: Props) => {
+  const { formPageConfig, onFinish } = props;
+  const { formConfig, formItemsConfig } = formPageConfig;
+
+  const formRef = useRef<any>();
+  const handleFormItem = (type: ItemType, itemProps?: object) => {
+    switch (type) {
+      case 'input':
+        return <Input {...itemProps} />;
+      case 'select':
+        return <Select {...itemProps} />;
+      default:
+        return null;
+    }
   };
 
   return (
-    <div>
-      <Form
-        labelCol={{ span: 4 }}
-        wrapperCol={{ span: 14 }}
-        layout="horizontal"
-        initialValues={{ size: componentSize }}
-        onValuesChange={onFormLayoutChange}
-        size={componentSize as SizeType}
-      >
-        <Form.Item label="Input">
+    <FormPageWrapper>
+      <Form {...formConfig} onFinish={(values) => onFinish(values)} ref={formRef}>
+        {formItemsConfig.map((item) => {
+          return (
+            <Form.Item className="form-item" label={item.label} key={item.label} name={item.name}>
+              {handleFormItem(item.type)}
+            </Form.Item>
+          );
+        })}
+
+        <div style={{ width: '100%', position: 'relative', height: '32px' }}>
+          <div style={{ position: 'absolute', right: '10px', display: 'flex' }}>
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                查询
+              </Button>
+            </Form.Item>
+            <Form.Item>
+              <Button onClick={() => formRef.current.resetFields()}>重置</Button>
+            </Form.Item>
+          </div>
+        </div>
+
+        {/* <Form.Item label="Input">
           <Input />
         </Form.Item>
         <Form.Item label="Select">
@@ -60,9 +89,9 @@ const FormPage: React.FC = memo(() => {
         </Form.Item>
         <Form.Item label="Button">
           <Button>Button</Button>
-        </Form.Item>
+        </Form.Item> */}
       </Form>
-    </div>
+    </FormPageWrapper>
   );
 });
 

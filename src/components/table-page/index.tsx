@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Table } from 'antd';
 import { ITablePageConfig } from './types';
 import TableHeader from './cpns/header';
@@ -13,7 +13,7 @@ const TablePage = <T extends {}>(props: Props<T>) => {
   const { tablePageConfig, dataSource = [] } = props;
   const { tableConfig, columns } = tablePageConfig;
   return (
-    <div>
+    <>
       <Table
         columns={columns}
         dataSource={dataSource}
@@ -21,8 +21,11 @@ const TablePage = <T extends {}>(props: Props<T>) => {
         size={tableConfig.size}
         title={() => <TableHeader title={tableConfig.title} />}
       />
-    </div>
+    </>
   );
 };
 
-export default TablePage;
+// 包装memo
+const TablePageWrapped = <T extends {}>(props: Props<T>) => React.createElement(memo(TablePage<T>), {...props})
+
+export default TablePageWrapped;

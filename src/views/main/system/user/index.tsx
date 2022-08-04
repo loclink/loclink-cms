@@ -9,54 +9,60 @@ import { useTableAction } from '@/hooks/useTableAction';
 
 import FormPage from '@/components/form-page';
 import TablePage from '@/components/table-page';
-
-const TablePageWrapped = memo(TablePage<IDataType>)
+import { formPageConfig } from './config/form-page-config';
 
 const User = memo(() => {
   const dispatch = useAppDispatch();
   // const search = useRouteSearch();
 
-  const {userListData}  = useSelector((state: IRootState) => state.user)
-  const [dataSource, setDataSource] = useState<any>([])
+  const { userListData } = useSelector((state: IRootState) => state.user);
+  const [dataSource, setDataSource] = useState<any>([]);
 
   // 处理表格数据
-  const handleDataSource = (userListData:any[]) => {
-    return userListData.map(item =>( {...item, key: item.id}))
-  }
+  const handleDataSource = (userListData: any[]) => {
+    return userListData.map((item) => ({ ...item, key: item.id }));
+  };
 
   // 处理点击编辑按钮
-  const handleClickEditBtn = useCallback((record:IDataType) => {
-    console.log(record)
-  }, [])
+  const handleClickEditBtn = useCallback((record: IDataType) => {
+    console.log(record);
+  }, []);
 
   // 处理点击删除按钮
   const handleClickDeleteBtn = useCallback((record: IDataType) => {
-    console.log(record)
-  }, [])
+    console.log(record);
+  }, []);
 
   //  加入表格 action
-  const config = useTableAction<IDataType>(tablePageConfig, [{
-    name: '编辑',
-    onClick: handleClickEditBtn
-  }, 
-  {
-    name: '删除',
-    onClick: handleClickDeleteBtn
-  }
-])
+  const config = useTableAction<IDataType>(tablePageConfig, [
+    {
+      name: '编辑',
+      onClick: handleClickEditBtn
+    },
+    {
+      name: '删除',
+      onClick: handleClickDeleteBtn
+    }
+  ]);
 
   // 拿到列表数据
-  useEffect(() => { dispatch(getUserListAction()) }, []);
+  useEffect(() => {
+    dispatch(getUserListAction());
+  }, []);
 
   // 处理列表数据 对应table格式
   useEffect(() => {
-    setDataSource(handleDataSource(userListData))
-  }, [userListData])
+    setDataSource(handleDataSource(userListData));
+  }, [userListData]);
+
+  const onFinish = (values: any) => {
+    console.log(values);
+  };
 
   return (
     <div>
-      <FormPage></FormPage>
-      <TablePageWrapped tablePageConfig={config} dataSource={dataSource}></TablePageWrapped>
+      <FormPage formPageConfig={formPageConfig} onFinish={onFinish} />
+      <TablePage<IDataType> tablePageConfig={config} dataSource={dataSource} />
     </div>
   );
 });
