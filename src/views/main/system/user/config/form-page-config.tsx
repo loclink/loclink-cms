@@ -2,22 +2,37 @@ import { IFormPageConfig } from '@/components/form-page/types';
 
 const formPageConfig: IFormPageConfig = {
   formConfig: {
-    layout: 'inline',
-    labelCol: { span: 6 },
-    wrapperCol: { span: 16 },
+    layout: 'horizontal',
     labelAlign: 'right',
-    colon: true
+    colon: true,
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 8 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 16 },
+    },
   },
   formItemsConfig: [
     {
+      key: 'username',
       label: '用户名',
       type: 'input',
       name: 'username'
     },
     {
       label: '角色',
-      type: 'input',
-      name: 'role_name'
+      type: 'select',
+      name: 'role_name',
+      key: 'role_name',
+      wrapperCol: {
+        span: 20
+      },
+      itemProps: {
+        allowClear: true,
+        loading: true
+      }
     }
   ]
 };

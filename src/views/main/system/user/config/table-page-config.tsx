@@ -4,11 +4,11 @@ import type { ITablePageConfig } from '@/components/table-page/types';
 
 const tablePageConfig: ITablePageConfig<IDataType> = {
   tableConfig: {
-    title: '用户管理：',
+    title: '用户列表：',
     bordered: true,
-    size: 'small'
+    size: 'small',
+    showPagination: true
   },
-
   columns: [
     {
       title: 'id',

@@ -11,7 +11,7 @@ const userSlice = createSlice({
     loading: false, // 是否处于请求加载
     menuList: [], // 当前用户拥有的菜单权限列表
     sideMenuList: [], // 侧边栏菜单数据
-    userListData: [] // 用户列表数据
+    userListData: { total: 0, list: [] } // 用户列表数据
   },
 
   reducers: {

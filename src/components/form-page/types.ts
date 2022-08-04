@@ -1,23 +1,16 @@
+import type { SelectProps } from 'antd/es/select';
+import type { FormProps, FormItemProps } from 'antd/es/form';
+
 type ItemType = 'input' | 'select' | 'datePicker';
 
-interface formItemConfig {
-  label: string;
-  colon?: boolean;
+interface formItemConfig extends FormItemProps {
+  key: string | number;
   type: ItemType;
-  name: string;
-  itemProps?: object;
+  itemProps?: object & SelectProps;
 }
 
 interface IFormPageConfig {
-  formConfig: {
-    labelCol?: { span?: number; offset?: number };
-    wrapperCol?: { span?: number; offset?: number };
-    layout?: 'horizontal' | 'vertical' | 'inline';
-    size?: 'small' | 'middle' | 'large';
-    labelAlign?: 'left' | 'right';
-    colon?: boolean;
-  };
-
+  formConfig: FormProps;
   formItemsConfig: formItemConfig[];
 }
 export type { IFormPageConfig, ItemType };

@@ -13,7 +13,7 @@ const FormPage: React.FC<Props> = memo((props: Props) => {
   const { formPageConfig, onFinish } = props;
   const { formConfig, formItemsConfig } = formPageConfig;
 
-  const formRef = useRef<any>();
+  const [form] = Form.useForm();
   const handleFormItem = (type: ItemType, itemProps?: object) => {
     switch (type) {
       case 'input':
@@ -27,10 +27,10 @@ const FormPage: React.FC<Props> = memo((props: Props) => {
 
   return (
     <FormPageWrapper>
-      <Form {...formConfig} onFinish={(values) => onFinish(values)} ref={formRef}>
+      <Form {...formConfig} onFinish={(values) => onFinish(values)} form={form}>
         {formItemsConfig.map((item) => {
           return (
-            <Form.Item className="form-item" label={item.label} key={item.label} name={item.name}>
+            <Form.Item className="form-item" label={item.label} key={item.key} name={item.name}>
               {handleFormItem(item.type)}
             </Form.Item>
           );
@@ -44,7 +44,7 @@ const FormPage: React.FC<Props> = memo((props: Props) => {
               </Button>
             </Form.Item>
             <Form.Item>
-              <Button onClick={() => formRef.current.resetFields()}>重置</Button>
+              <Button onClick={() => form.resetFields()}>重置</Button>
             </Form.Item>
           </div>
         </div>

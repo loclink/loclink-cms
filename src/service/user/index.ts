@@ -45,7 +45,7 @@ const getMenuList = async (): Promise<IResponseData> => {
 const getUserList = async (): Promise<IResponseData> => {
   return http.request({
     url: '/user/list',
-    method: 'get',
+    method: 'post',
     loading: true
   });
 };

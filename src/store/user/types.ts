@@ -5,7 +5,10 @@ interface IUser {
   menuList: [];
   sideMenuList: any[];
   loginStatus: boolean;
-  userListData: any[]
+  userListData: {
+    total: number;
+    list: any[];
+  };
 }
 
 export type { IUser };

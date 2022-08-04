@@ -19,8 +19,8 @@ const User = memo(() => {
   const [dataSource, setDataSource] = useState<any>([]);
 
   // 处理表格数据
-  const handleDataSource = (userListData: any[]) => {
-    return userListData.map((item) => ({ ...item, key: item.id }));
+  const handleDataSource = (userListData: any) => {
+    return userListData.list.map((item: any) => ({ ...item, key: item.id }));
   };
 
   // 处理点击编辑按钮
@@ -62,7 +62,7 @@ const User = memo(() => {
   return (
     <div>
       <FormPage formPageConfig={formPageConfig} onFinish={onFinish} />
-      <TablePage<IDataType> tablePageConfig={config} dataSource={dataSource} />
+      <TablePage<IDataType> tablePageConfig={config} dataSource={dataSource} total={userListData.total} />
     </div>
   );
 });
