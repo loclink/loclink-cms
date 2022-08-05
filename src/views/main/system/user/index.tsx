@@ -1,15 +1,17 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from '@/store';
-import { getUserListAction } from '@/store/user';
-import { tablePageConfig } from './config/table-page-config';
+import { getUserListThunk } from '@/store/user';
 import { IDataType } from './types';
 import { useSelector } from 'react-redux';
 import { IRootState } from '@/store/types';
+
 import { useTableAction } from '@/hooks/useTableAction';
+
+import { formPageConfig } from './config/form-page-config';
+import { tablePageConfig } from './config/table-page-config';
 
 import FormPage from '@/components/form-page';
 import TablePage from '@/components/table-page';
-import { formPageConfig } from './config/form-page-config';
 
 const User = memo(() => {
   const dispatch = useAppDispatch();
@@ -47,7 +49,7 @@ const User = memo(() => {
 
   // 拿到列表数据
   useEffect(() => {
-    dispatch(getUserListAction());
+    dispatch(getUserListThunk({}));
   }, []);
 
   // 处理列表数据 对应table格式
@@ -55,13 +57,18 @@ const User = memo(() => {
     setDataSource(handleDataSource(userListData));
   }, [userListData]);
 
-  const onFinish = (values: any) => {
-    console.log(values);
+  // 提交查询
+  const onFinish = (formData: Record<string, any>): Promise<any> => {
+    return dispatch(getUserListThunk(formData));
   };
 
+  // 重置
+  const onReset = (): Promise<any> => {
+    return dispatch(getUserListThunk({}));
+  };
   return (
     <div>
-      <FormPage formPageConfig={formPageConfig} onFinish={onFinish} />
+      <FormPage formPageConfig={formPageConfig} onFinish={onFinish} onReset={onReset} />
       <TablePage<IDataType> tablePageConfig={config} dataSource={dataSource} total={userListData.total} />
     </div>
   );

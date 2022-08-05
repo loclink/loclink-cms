@@ -1,39 +1,39 @@
 import { IFormPageConfig } from '@/components/form-page/types';
+import { getRoleListThunk } from '@/store/role';
+import store from '@/store';
 
 const formPageConfig: IFormPageConfig = {
   formConfig: {
     layout: 'horizontal',
     labelAlign: 'right',
     colon: true,
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 8 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 16 },
-    },
   },
+
   formItemsConfig: [
-    {
-      key: 'username',
-      label: '用户名',
-      type: 'input',
-      name: 'username'
-    },
-    {
-      label: '角色',
-      type: 'select',
-      name: 'role_name',
-      key: 'role_name',
-      wrapperCol: {
-        span: 20
+    [
+      {
+        key: 'username',
+        label: '用户名',
+        type: 'input',
+        name: 'username'
       },
-      itemProps: {
-        allowClear: true,
-        loading: true
+      {
+        label: '角色',
+        type: 'select',
+        name: 'role',
+        key: 'role',
+        size: 'large',
+        width: 200,
+        request: async () => {
+          const roleListData = await store.dispatch<any>(getRoleListThunk());
+          if (roleListData.payload.code === 200) {
+            return roleListData.payload.data.list.map((item: any) => ({ label: item.role_name, value: item.id }));
+          } else {
+            return [];
+          }
+        }
       }
-    }
+    ]
   ]
 };
 export { formPageConfig };

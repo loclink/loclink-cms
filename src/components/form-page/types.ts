@@ -1,16 +1,20 @@
 import type { SelectProps } from 'antd/es/select';
-import type { FormProps, FormItemProps } from 'antd/es/form';
-
+import type { ProFormProps, ProFormItemProps, ProFieldRequestData } from '@ant-design/pro-components';
 type ItemType = 'input' | 'select' | 'datePicker';
 
-interface formItemConfig extends FormItemProps {
+interface IFormItemProp {
+  label: string;
+  name: string;
   key: string | number;
   type: ItemType;
-  itemProps?: object & SelectProps;
+  request?: ProFieldRequestData<any>;
 }
 
+type IFormItemConfig = ProFormItemProps & SelectProps & IFormItemProp;
+
 interface IFormPageConfig {
-  formConfig: FormProps;
-  formItemsConfig: formItemConfig[];
+  formConfig: ProFormProps;
+  formItemsConfig: IFormItemConfig[][];
 }
-export type { IFormPageConfig, ItemType };
+
+export type { IFormPageConfig, ItemType, IFormItemConfig };

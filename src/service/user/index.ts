@@ -42,10 +42,11 @@ const getMenuList = async (): Promise<IResponseData> => {
 };
 
 // 获取用户列表
-const getUserList = async (): Promise<IResponseData> => {
+const getUserList = async (params?: any): Promise<IResponseData> => {
   return http.request({
     url: '/user/list',
     method: 'post',
+    data: params,
     loading: true
   });
 };

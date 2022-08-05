@@ -7,8 +7,8 @@ import SignInForm from './cpns/sign-in-form';
 import SignUpForm from './cpns/sign-up-form';
 import { useAppDispatch } from '../../store';
 import { useNavigate } from 'react-router-dom';
-import { setLoginStatus, userSignInAction } from '../../store/user';
-import { userSignUpAction } from '../../store/user/thunk';
+import { setLoginStatus, userSignInThunk } from '../../store/user';
+import { userSignUpThunk } from '../../store/user/thunk';
 
 const Login: React.FC = memo(() => {
   const dispatch = useAppDispatch();
@@ -22,7 +22,7 @@ const Login: React.FC = memo(() => {
 
   // 处理登录
   const handleSignIn = useCallback((values: any) => {
-    dispatch(userSignInAction(values)).then((res: any) => {
+    dispatch(userSignInThunk(values)).then((res: any) => {
       if (res.payload.code === 200) {
         dispatch(setLoginStatus(true));
         navigate({ pathname: '/main' });
@@ -32,7 +32,7 @@ const Login: React.FC = memo(() => {
 
   // 处理注册
   const handleSingUp = useCallback((values: any) => {
-    dispatch(userSignUpAction(values)).then((res: any) => {
+    dispatch(userSignUpThunk(values)).then((res: any) => {
       if (res.payload.code === 200) setActiveKey('signIn');
     });
   }, []);

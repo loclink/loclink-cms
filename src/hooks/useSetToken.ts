@@ -16,11 +16,16 @@ const useSetToken = () => {
   useEffect(() => {
     if (location.pathname !== '/login') {
       const token = authToken || getCache('token');
-      token ? dispatch(setAuthToken(token)) : navigate({ pathname: '/login' });
+      if (token) {
+        dispatch(setAuthToken(token));
+      } else {
+        navigate({ pathname: '/login' });
+        return;
+      }
     }
   }, []);
 
-  return authToken
+  return authToken;
 };
 
 export { useSetToken };

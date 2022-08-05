@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { setCache } from '../../utils/cache';
-import { getMenuListAction, getUserInfoAction, getUserListAction, userSignInAction, userSignUpAction } from './thunk';
+import { getMenuListThunk, getUserInfoThunk, getUserListThunk, userSignInThunk, userSignUpThunk } from './thunk';
 
 const userSlice = createSlice({
   name: 'user',
@@ -39,7 +39,7 @@ const userSlice = createSlice({
   // 异步reducer 放于此管理
   extraReducers: (builder) => {
     // 提交用户登录校验后的token数据
-    builder.addCase(userSignInAction.fulfilled, (state, action) => {
+    builder.addCase(userSignInThunk.fulfilled, (state, action) => {
       if (action.payload.code === 200) {
         state.authToken = action.payload.data.token;
         setCache('token', state.authToken);
@@ -47,14 +47,14 @@ const userSlice = createSlice({
     });
 
     // 用户注册
-    builder.addCase(userSignUpAction.fulfilled, (state, action) => {
+    builder.addCase(userSignUpThunk.fulfilled, (state, action) => {
       if (action.payload.code === 200) {
         return;
       }
     });
 
     // 提交用户信息数据
-    builder.addCase(getUserInfoAction.fulfilled, (state, action) => {
+    builder.addCase(getUserInfoThunk.fulfilled, (state, action) => {
       if (action.payload.code === 200) {
         state.userInfo = action.payload.data;
         state.loginStatus = true;
@@ -62,7 +62,7 @@ const userSlice = createSlice({
     });
 
     // 提交用户菜单数据
-    builder.addCase(getMenuListAction.fulfilled, (state, action) => {
+    builder.addCase(getMenuListThunk.fulfilled, (state, action) => {
       if (action.payload.code === 200) {
         state.menuList = action.payload.data;
         setCache('menuList', state.menuList);
@@ -70,7 +70,7 @@ const userSlice = createSlice({
     });
 
     // 提交用户列表数据
-    builder.addCase(getUserListAction.fulfilled, (state, action) => {
+    builder.addCase(getUserListThunk.fulfilled, (state, action) => {
       if (action.payload.code === 200) {
         state.userListData = action.payload.data;
       }
@@ -78,6 +78,6 @@ const userSlice = createSlice({
   }
 });
 
-export { userSignInAction, getUserInfoAction, getMenuListAction, getUserListAction };
+export { userSignInThunk, getUserInfoThunk, getMenuListThunk, getUserListThunk };
 export const { isLoading, setAuthToken, setLoginStatus, setSideMenuList } = userSlice.actions;
 export default userSlice.reducer;
