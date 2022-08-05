@@ -66,10 +66,26 @@ const User = memo(() => {
   const onReset = (): Promise<any> => {
     return dispatch(getUserListThunk({}));
   };
+
+  const onChangePage = (page: number, pageSize: number) => {
+    console.log(page, pageSize);
+    dispatch(
+      getUserListThunk({
+        offset: (page - 1) * pageSize,
+        limit: pageSize
+      })
+    );
+  };
+
   return (
     <div>
       <FormPage formPageConfig={formPageConfig} onFinish={onFinish} onReset={onReset} />
-      <TablePage<IDataType> tablePageConfig={config} dataSource={dataSource} total={userListData.total} />
+      <TablePage<IDataType>
+        tablePageConfig={config}
+        dataSource={dataSource}
+        total={userListData.total}
+        onChangePage={onChangePage}
+      />
     </div>
   );
 });
