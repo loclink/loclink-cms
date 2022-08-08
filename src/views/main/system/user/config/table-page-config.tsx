@@ -26,35 +26,36 @@ const tablePageConfig: ITablePageConfig<IDataType> = {
       title: '角色',
       key: 'role_name',
       dataIndex: 'role',
-      render: (value) => value.role_name,
-      align: 'center'
+      align: 'center',
+      render: (value) => value.role_name
     },
     {
       title: '上次登录ip',
       dataIndex: 'last_login_ip',
       key: 'last_login_ip',
-      align: 'center'
+      align: 'center',
+      render: (value) => value ?? '——'
     },
     {
       title: '上次登录时间',
       key: 'last_login_time',
       dataIndex: 'last_login_time',
-      render: (value) => formatDate(value),
-      align: 'center'
+      align: 'center',
+      render: (value) => formatDate(value) ?? '——'
     },
     {
       title: '创建时间',
       key: 'created',
       dataIndex: 'created',
-      render: (value) => formatDate(value),
-      align: 'center'
+      align: 'center',
+      render: (value) => formatDate(value)
     },
     {
       title: '更新时间',
       key: 'updated',
       dataIndex: 'updated',
-      render: (value) => formatDate(value),
-      align: 'center'
+      align: 'center',
+      render: (value) => formatDate(value)
     }
   ]
 };
