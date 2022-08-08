@@ -1,4 +1,4 @@
-import React, { memo, useEffect} from 'react';
+import React, { memo } from 'react';
 import { Table, Pagination } from 'antd';
 import { ITablePageConfig } from './types';
 import TableHeader from './cpns/header';
@@ -16,10 +16,6 @@ interface Props<T> {
 const TablePage = <T extends {}>(props: Props<T>) => {
   const { tablePageConfig, dataSource = [], total, onChangePage,pageSize, currentPage } = props;
   const { tableConfig, columns } = tablePageConfig;
-
-  // useEffect(() => {
-
-  // }, [])
   return (
     <>
       <Table

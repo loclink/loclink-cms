@@ -6,7 +6,7 @@ const formPageConfig: IFormPageConfig = {
   formConfig: {
     layout: 'horizontal',
     labelAlign: 'right',
-    colon: true,
+    colon: true
   },
 
   formItemsConfig: [
@@ -32,6 +32,12 @@ const formPageConfig: IFormPageConfig = {
             return [];
           }
         }
+      },
+      {
+        label: '创建时间',
+        type: 'dateTimeRangePicker',
+        name: 'createdRange',
+        key: 'created'
       }
     ]
   ]

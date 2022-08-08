@@ -1,20 +1,7 @@
-import React, { memo, useRef } from 'react';
-import { Button, Cascader, DatePicker, Form, Input, Select } from 'antd';
-
-import {
-  BasicLayout,
-  FooterToolbar,
-  PageContainer,
-  ProForm,
-  ProFormDateRangePicker,
-  ProFormDigit,
-  ProFormRadio,
-  ProFormSelect,
-  ProFormText,
-  ProFormTextArea,
-  ProFormUploadButton
-} from '@ant-design/pro-components';
-import { IFormPageConfig, ItemType, IFormItemConfig } from './types';
+import React, { memo } from 'react';
+import { Button } from 'antd';
+import { ProForm, ProFormSelect, ProFormText, ProFormDateTimeRangePicker } from '@ant-design/pro-components';
+import { IFormPageConfig, IFormItemConfig } from './types';
 import { FormPageWrapper } from './style';
 
 interface Props {
@@ -35,18 +22,16 @@ const FormPage: React.FC<Props> = memo((props: Props) => {
         return <ProFormText {...item} />;
       case 'select':
         return <ProFormSelect {...item} />;
+      case 'dateTimeRangePicker':
+        return <ProFormDateTimeRangePicker {...item} />;
       default:
         return null;
     }
   };
 
   // 处理表单分组数据
-  const handleGroupForm = (formItem: IFormItemConfig | IFormItemConfig[], index: number) => {
-    if (Array.isArray(formItem)) {
-      return <ProForm.Group key={index}>{formItem.map((item) => handleFormItem(item))}</ProForm.Group>;
-    } else {
-      return handleFormItem(formItem);
-    }
+  const handleGroupForm = (formItem: IFormItemConfig[], index: number) => {
+    return <ProForm.Group key={index}>{formItem.map((item) => handleFormItem(item))}</ProForm.Group>;
   };
 
   return (

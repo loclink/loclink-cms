@@ -7,7 +7,7 @@ import { useTableAction } from './useTableAction';
 
 type PageType = 'user' | 'menu';
 
-const useTablePage = <T>(pageType: PageType, tablePageConfig:ITablePageConfig<T>) => {
+const useTablePage = <T>(pageType: PageType, tablePageConfig: ITablePageConfig<T>) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [dataSource, setDataSource] = useState([]);
@@ -16,27 +16,27 @@ const useTablePage = <T>(pageType: PageType, tablePageConfig:ITablePageConfig<T>
 
   const dispatch = useAppDispatch();
 
-    // 处理点击编辑按钮
-    const handleClickEditBtn = useCallback((record: IDataType) => {
-      console.log(record);
-    }, []);
-  
-    // 处理点击删除按钮
-    const handleClickDeleteBtn = useCallback((record: IDataType) => {
-      console.log(record);
-    }, []);
-  
-    //  加入 action
-    const config = useTableAction<T>(tablePageConfig, [
-      {
-        name: '编辑',
-        onClick: handleClickEditBtn
-      },
-      {
-        name: '删除',
-        onClick: handleClickDeleteBtn
-      }
-    ]);
+  // 处理点击编辑按钮
+  const handleClickEditBtn = useCallback((record: IDataType) => {
+    console.log(record);
+  }, []);
+
+  // 处理点击删除按钮
+  const handleClickDeleteBtn = useCallback((record: IDataType) => {
+    console.log(record);
+  }, []);
+
+  //  加入 action
+  const config = useTableAction<T>(tablePageConfig, [
+    {
+      name: '编辑',
+      onClick: handleClickEditBtn
+    },
+    {
+      name: '删除',
+      onClick: handleClickDeleteBtn
+    }
+  ]);
 
   // 处理表格数据
   const handleDataSource = (listData: any) => {
@@ -56,6 +56,7 @@ const useTablePage = <T>(pageType: PageType, tablePageConfig:ITablePageConfig<T>
   // 提交查询
   const onFinish = useCallback(
     (formData: Record<string, any>): Promise<void | boolean> => {
+      console.log(formData);
       return new Promise((resolve) => {
         setCondition(formData);
         resolve(true);

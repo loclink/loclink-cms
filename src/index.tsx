@@ -9,14 +9,11 @@ import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import './assets/less/base.less';
 
-
-
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <ConfigProvider locale={zhCN} >
+      <ConfigProvider locale={zhCN}>
         <App />
       </ConfigProvider>
     </BrowserRouter>

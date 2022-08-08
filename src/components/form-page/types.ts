@@ -1,10 +1,10 @@
 import type { SelectProps } from 'antd/es/select';
 import type { ProFormProps, ProFormItemProps, ProFieldRequestData } from '@ant-design/pro-components';
-type ItemType = 'input' | 'select' | 'datePicker';
+type ItemType = 'input' | 'select' | 'dateTimeRangePicker';
 
 interface IFormItemProp {
   label: string;
-  name: string;
+  name: string | string[];
   key: string | number;
   type: ItemType;
   request?: ProFieldRequestData<any>;

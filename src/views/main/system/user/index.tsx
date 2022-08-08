@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
 
-import { useTablePage } from '@/hooks/useTablePage';
-
 import { formPageConfig } from './config/form-page-config';
 import { tablePageConfig } from './config/table-page-config';
 
 import FormPage from '@/components/form-page';
 import TablePage from '@/components/table-page';
+
+import { useTablePage } from '@/hooks/useTablePage';
 
 import { IDataType } from './types';
 
