@@ -19,8 +19,7 @@ module.exports = {
   plugins: [
     {
       plugin: CracoAntDesignPlugin,
-      options: {
-      }
+      options: {}
     }
   ]
 };

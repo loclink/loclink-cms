@@ -23,7 +23,6 @@ const Main: React.FC = memo(() => {
           collapsible
           collapsed={collapsed}
           className="layout-side"
-       
         >
           <SideMenu />
         </Layout.Sider>
