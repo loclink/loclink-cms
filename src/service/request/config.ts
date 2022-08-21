@@ -1,5 +1,5 @@
-const devBaseURL = 'http://localhost:7777';
-const proBaseURL = 'http://t-gbox.dysdk.com';
+const devBaseURL = 'https://react-cms-api.tj520.top';
+const proBaseURL = 'https://react-cms-api.tj520.top';
 
 const BASE_URL = process.env.NODE_ENV === 'development' ? devBaseURL : proBaseURL;
 const TIME_OUT = 5000;

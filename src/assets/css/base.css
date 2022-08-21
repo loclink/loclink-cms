@@ -1,6 +1,6 @@
 @import '~normalize.css';
-@import '~antd/dist/antd.less';
-@import '~@ant-design/pro-components/dist/components.less';
+@import '~antd/dist/antd.css';
+@import '~@ant-design/pro-components/dist/components.css';
 
 /* 样式初始化 */
 body,

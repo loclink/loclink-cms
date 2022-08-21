@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 // antd的国际化以及公共样式文件的引入
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
-import './assets/less/base.less';
+import './assets/css/base.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
