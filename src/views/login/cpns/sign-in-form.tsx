@@ -11,7 +11,12 @@ const SignInForm: React.FC<Props> = memo((props: Props) => {
 
   return (
     <div>
-      <Form name="normal_login" className="login-form" initialValues={{ remember: true }} onFinish={onFinish}>
+      <Form
+        name="normal_login"
+        className="login-form"
+        initialValues={{ remember: true, username: 'admin', password: 'admin' }}
+        onFinish={onFinish}
+      >
         <Form.Item
           label="帐号"
           colon
