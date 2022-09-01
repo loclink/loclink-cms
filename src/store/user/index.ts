@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { setCache } from '../../utils/cache';
+import { setCache } from '@/utils/cache';
 import { getMenuListThunk, getUserInfoThunk, getUserListThunk, userSignInThunk, userSignUpThunk } from './thunk';
 
 const userSlice = createSlice({

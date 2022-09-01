@@ -7,7 +7,7 @@ import { useTableAction } from './useTableAction';
 
 type PageType = 'user' | 'menu';
 
-const useTablePage = <T>(pageType: PageType, tablePageConfig: ITablePageConfig<T>) => {
+const useTablePage = <T extends {}>(pageType: PageType, tablePageConfig: ITablePageConfig<T>) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [dataSource, setDataSource] = useState([]);

@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getRoleListThunk } from './thunk';
-import { IRole } from './types';
 
 const roleSlice = createSlice({
   name: 'role',

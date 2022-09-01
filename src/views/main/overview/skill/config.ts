@@ -91,7 +91,7 @@ const rearEnd = [
 
   {
     title: '数据库',
-    desp: 'mysql2'
+    desp: 'mysql'
   },
   {
     title: 'ORM框架',
@@ -99,7 +99,7 @@ const rearEnd = [
   },
   {
     title: 'token校验',
-    desp: 'jsonwebtoken'
+    desp: 'JsonWebToken'
   },
 
   {
